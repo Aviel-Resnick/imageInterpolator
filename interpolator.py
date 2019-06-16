@@ -1,13 +1,25 @@
 import numpy as np
 import cv2
 
-sampleA = cv2.imread('blop.png')
-sampleB = cv2.imread('black.png')
+start = cv2.imread('white.png')
+end = cv2.imread('black.png')
 
+def convert(image):
+    height, width = image.shape[:2]
+    output = []
 
-height, width = sampleA.shape[:2]
+    for column in range(width):
+        columnList = []
+        for row in range(height):
+            columnList.append(list(image[column,row]))
+        output.append(columnList)
 
-for x in range(width):
-    for y in range(height):
-        color = sampleA[x,y]
-        print(color)
+    return(output)
+
+def main(start, end):
+    startList = convert(start)
+    endList = convert(end)
+
+    print(startList)
+
+main(start, end)
